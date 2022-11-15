@@ -1,0 +1,15 @@
+---
+title: "Introducing R Markdown"
+author: "dapR 1 -- Lab 2"
+output:
+  html_notebook:
+    theme: flatly
+    code_folding: show
+---
+
+source('dynamic_summary_source.Rmd')
+
+# Dynamic Summary Paragraph
+
+Our data set provides information regarding crime occurring in the City of Seattle from 2008 to present. Within our data set, there are `r summary_info$num_observations` observations, each with `r summary_info$num_variables` variables. Variables include details about the location, time, and nature of the crime. For example, we found that on average, crimes occurred at `r summary_info$mean_dates` in terms of the date and time. Moreover, there are `r summary_info$num_offenses` different kinds of offenses committed, `r num_against_a_person` of which were committed against a person.
+
