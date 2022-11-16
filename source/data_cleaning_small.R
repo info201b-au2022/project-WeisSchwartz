@@ -8,7 +8,7 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 
-small_crime_data <- read.csv('https://media.githubusercontent.com/media/info201b-au2022/project-ellen-huynh2/main/data/SPD_Crime_Data__2008-Present.csv', nrows = 10000)
+small_crime_data <- read.csv('https://raw.githubusercontent.com/info201b-au2022/project-WeisSchwartz/main/data/crime_data2.csv')
 
 # distill dataframe down to only the columns relevant for our use.
 small_crime_data <- small_crime_data %>%

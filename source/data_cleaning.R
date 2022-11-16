@@ -4,11 +4,16 @@
 #   Autumn 2022
 
 library(dplyr)
-library(lubridate)
+library(tidyverse)
+library(lubridate)  
 
-source('data_access.R')
-# crime_data <- read.csv('https://media.githubusercontent.com/media/info201b-au2022/project-ellen-huynh2/main/data/SPD_Crime_Data__2008-Present.csv')
-crime_data <- df
+crime_data <- list()
+
+for (n in 1:15) {
+  crime_data[[n]] <- read.csv(paste('https://raw.githubusercontent.com/info201b-au2022/project-WeisSchwartz/main/data/crime_data', n, '.csv', sep = ''))
+}
+
+crime_data <- do.call(rbind.data.frame, crime_data)
 
 # distill dataframe down to only the columns relevant for our use.
 crime_data <- crime_data %>%
