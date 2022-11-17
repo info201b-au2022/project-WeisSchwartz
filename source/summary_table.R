@@ -1,8 +1,14 @@
 library(tidyverse)
 library(ggplot2)
+library(stringr)
+
 
 #source("data_cleaning_small.R")
 source("data_cleaning.R")
+#view(small_crime_data)
+
+view(crime_data)
+
 
 #create a column with just the year
 
@@ -17,29 +23,44 @@ crime_data <- crime_data %>%
 
 #assign the value 1 to every crime
 #find the total number of crimes per year
-#create a comma separated list of the most common crimes per year
-summary_table_pt1 <- crime_data %>%
+
+table_2 <- crime_data %>%
   mutate(everyone_gets_1 = 1) %>%
   group_by(year)%>%
   summarise(
-    number_crimes_that_year = sum(everyone_gets_1),
-    most_common_crime = names(sort(table(Offense.Parent.Group),decreasing=TRUE))
-    ) %>%
-  group_by(year) %>%
-  mutate(most_common_crime = paste(most_common_crime, collapse=",")) %>%
+    number_crimes_that_year = sum(everyone_gets_1))
+
+##find the most common crime and how often it occured 
+
+table_3 <- crime_data %>%
+  group_by(year)%>%
+  count(Offense)%>%
+  filter(n==max(n))%>%
+  mutate(most_committed_crime = paste(Offense, collapse = ","))%>%
+  mutate(number_of_most_committed_crime = n) %>%
+  select(year, most_committed_crime, number_of_most_committed_crime) %>%
   distinct()
 
-#create a table with comma separated list of the most common neighborhoods for crime per year   
-  
-summary_table_pt2<- crime_data%>%
+#find the most common neighborhood and how often crimes were comitted there 
+table_4 <- crime_data %>%
   group_by(year)%>%
-  summarise(
-  most_common_neighborhood = names(sort(table(MCPP), decreasing = TRUE))) %>%
-  group_by(year) %>%
-  mutate(most_common_neighborhood = paste(most_common_neighborhood, collapse= ",")) %>%
+  count(MCPP) %>%
+  filter(n==max(n)) %>%
+  mutate(most_common_neighborhood = paste (MCPP, collapse = ","))%>%
+  mutate(number_of_neighborhood_occurance = n)%>%
+  select(year, most_common_neighborhood, number_of_neighborhood_occurance) %>%
   distinct()
+
 
 #combine tables to one final summary table 
-final_summary_table <- left_join(summary_table_pt1, summary_table_pt2, by = "year")
+table_5 <- left_join(table_2, table_3, by = "year")
+final_6 <- left_join(table_5, table_4, by ="year")
 
+#Test?
+#counting <- crime_data %>%
+#  filter(year == 2006) %>%
+# count(MCPP == "CAPITOL HILL")
 
+#counting_2 <- crime_data %>%
+# filter (year == 2006) %>%
+#  count(MCPP == "NORTH ADMIRAL")
