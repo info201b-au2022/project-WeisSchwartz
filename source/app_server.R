@@ -9,4 +9,15 @@ library(plotly)
 
 # Define shiny server
 server <- function(input, output){
+  ###
+  # Chart 1
+  ###
+  
+  ###
+  # Chart 2
+  ###
+  
+  ###
+  # Chart 3
+  ###
 }

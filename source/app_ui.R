@@ -123,12 +123,6 @@ chart3_panel <- tabPanel(
 # Summary
 ###
 
-# Define a variable `summary_sidebar_content` that is a `sidebarPanel()` for 
-# my summary page:
-
-summary_sidebar_content <- sidebarPanel(
-  p('sumary sidebar')
-)
 
 # Define a variable `summary_main_content` that is a `mainPanel()` for my
 # summary page that contains
@@ -141,7 +135,6 @@ summary_main_content <- mainPanel(
 summary_panel <- tabPanel(
   titlePanel('summary'),
   sidebarLayout(
-    summary_sidebar_content,
     summary_main_content
   )
 )
@@ -151,13 +144,6 @@ summary_panel <- tabPanel(
 # Report
 ###
 
-
-# Define a variable `report_sidebar_content` that is a `sidebarPanel()` for 
-# my report page:
-
-report_sidebar_content <- sidebarPanel(
-  p('report sidebar')
-)
 
 # Define a variable `report_main_content` that is a `mainPanel()` for my
 # report page that contains
@@ -170,7 +156,6 @@ report_main_content <- mainPanel(
 report_panel <- tabPanel(
   titlePanel('report'),
   sidebarLayout(
-    report_sidebar_content,
     report_main_content
   )
 )
