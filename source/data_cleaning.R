@@ -7,6 +7,7 @@ library(dplyr)
 library(tidyverse)
 library(lubridate)  
 
+#combine all of the small "digested" dataframes back into its original size.
 crime_data <- list()
 
 for (n in 1:15) {
