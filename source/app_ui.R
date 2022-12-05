@@ -134,9 +134,7 @@ summary_main_content <- mainPanel(
 # page
 summary_panel <- tabPanel(
   titlePanel('summary'),
-  sidebarLayout(
-    summary_main_content
-  )
+  summary_main_content
 )
 
 
@@ -155,9 +153,7 @@ report_main_content <- mainPanel(
 # page
 report_panel <- tabPanel(
   titlePanel('report'),
-  sidebarLayout(
-    report_main_content
-  )
+  report_main_content
 )
 
 
