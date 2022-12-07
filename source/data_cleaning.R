@@ -43,3 +43,13 @@ crime_data <- mutate(
               crime_data,
               Offense.Start.DateTime = mdy_hms(Offense.Start.DateTime)
               )
+
+# add a Year column to the dataframe 
+crime_data <- crime_data %>%
+  mutate(
+    Year = as.numeric(format(
+      as.POSIXct(
+        Offense.Start.DateTime, format = '%Y-%m-%d %H:%M:%S'),
+      '%Y'
+    ))
+  )

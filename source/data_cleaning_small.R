@@ -8,10 +8,10 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 
-small_crime_data <- read.csv('https://raw.githubusercontent.com/info201b-au2022/project-WeisSchwartz/main/data/crime_data2.csv')
+crime_data <- read.csv('https://raw.githubusercontent.com/info201b-au2022/project-WeisSchwartz/main/data/crime_data2.csv')
 
 # distill dataframe down to only the columns relevant for our use.
-small_crime_data <- small_crime_data %>%
+crime_data <- crime_data %>%
               select(
                 Offense.Start.DateTime, Crime.Against.Category,
                 Offense.Parent.Group, Offense, Offense.Code, MCPP,
@@ -19,8 +19,8 @@ small_crime_data <- small_crime_data %>%
               ) 
 
 # filter the dataset so it only contains the types of crimes we want to look at.
-small_crime_data <- filter(
-              small_crime_data, Offense %in% c(
+crime_data <- filter(
+              crime_data, Offense %in% c(
                 'Aggravated Assault', 'Simple Assault', 'Intimidation',
                 'Murder & Nonnegligent Mansalughter', 'Kidnapping/Abduction',
                 'Robbery', 'Forcible Rape', 'Forcible Sodomy',
@@ -30,10 +30,20 @@ small_crime_data <- filter(
                 ))
 
 # remove rows with missing values.
-small_crime_data <- small_crime_data %>% drop_na() %>% filter_all(all_vars(. != ''))
+crime_data <- crime_data %>% drop_na() %>% filter_all(all_vars(. != ''))
 
 # convert Offense.Start.DateTime from string into DateTime objects
-small_crime_data <- mutate(
-              small_crime_data,
+crime_data <- mutate(
+              crime_data,
               Offense.Start.DateTime = mdy_hms(Offense.Start.DateTime)
               )
+
+# add a Year column to the dataframe 
+crime_data <- crime_data %>%
+  mutate(
+    Year = as.numeric(format(
+      as.POSIXct(
+        Offense.Start.DateTime, format = '%Y-%m-%d %H:%M:%S'),
+      '%Y'
+    ))
+  )

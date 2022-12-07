@@ -3,7 +3,7 @@
 #    Kensho Gendzwill
 #    Autumn 2022
 
-# Load libraries so they are available
+# Load Shiny
 library("shiny")
 
 # Use source() to execute the `app_ui.R` and `app_server.R` files. These will

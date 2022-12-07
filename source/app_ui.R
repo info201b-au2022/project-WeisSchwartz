@@ -5,10 +5,11 @@
 
 # ui.R
 library(shiny)
+library(leaflet)
 
 # Pull dataframe from data cleaning file
-source('data_cleaning_small.R')
-#source('data_cleaning.R')
+#source('data_cleaning_small.R')
+source('data_cleaning.R')
 
 
 ###
@@ -62,7 +63,7 @@ chart1_panel <- tabPanel(
 
 
 ###
-# CHART 2
+# Chart 2
 ###
 
 
@@ -91,7 +92,7 @@ chart2_panel <- tabPanel(
 
 
 ###
-# Chart 3
+# Chart 3 - Crime Map
 ###
 
 
@@ -99,19 +100,59 @@ chart2_panel <- tabPanel(
 # my chart 3 page:
 
 chart3_sidebar_content <- sidebarPanel(
-  p('chart 3 sidebar')
+  sliderInput('map_year', 'Select Year', min(2007),
+              max(crime_data$Year), value=range(crime_data$Year)[2]
+              ),
+  selectInput('map_crime_type', 'Select Crime Type',
+              unique(crime_data$Offense)),
+  p('Please manually zoom in on Seattle, Leaflet has trouble initializing
+    the map with so many data points :,)'),
+  p('Also, to start dispalying the data points please start by manually
+    selecting a new crime type, this is another Leaflet frusteration.')
 )
 
 # Define a variable `chart3_main_content` that is a `mainPanel()` for my
 # chart 3 page that contains
 chart3_main_content <- mainPanel(
-  p('chat 3 main panel')
+  leafletOutput('map'),
+  h1('Summary'),
+  h2('About the Map'),
+  p('This map shows where each and every violent crime occured in Seattle in a
+    given year. Data before 2007 was omitted due to a lack of sufficient data to
+    produce a useful visualization on the map. By exploring this tool, users may
+    gain insight into which neighborhoods are most likely to experience a
+    certain type of crime. The year-selection tool allows for users to track the
+    general incident rate of crime in that neighborhood over time as well. Most
+    users would be interested in examining the trends from the past five or so
+    years, since that data is most relevant to how crime is distributed across
+    Seattle today. This information may be used to inform how a pedestrian
+    chooses to stay alert and protect themselves when walking around Seattle.'),
+  h2('Overall Trends and Patterns'),
+  p("Across all crime types, there is a noticeable cluster around downtown
+    Seattle, notably Belltown, the South end of Capitol Hill and International
+    District. For person-on-person crimes such as assault and intimidation,
+    clusters can be observed around the U District, Ballard and North Aurora
+    Avenue as well. These observations are consistent with the average
+    Seattelite's impression of these neighborhoods; walking alone at night in 
+    downtown, U District or Aurora Ave. is generally considered a bad move.
+    However, it is useful to consider that this may be a self-fulfilling
+    prophecy - if many people think that a neighborhood is dangerous, it will
+    cause people to be more alert and report more crimes in that area. In
+    addition, the neighborhoods mentioned are high-activity areas with many
+    residents and police availability.", strong("Users should be aware that the
+    clusters on the map are a biased representation of crime rate in Seattle."),
+    ),
+  p("Across time, the crime clusters don't seem to have changed much, with the
+    exception of Ballard, which did not seem to have as high of a concentration
+    of violent crime pre-2010. Outside of the persistent clusters, crime seems
+    to populate the remainder of Seattle in a random manner, showing no obvious
+    pattern across different years.")
 )
 
 # Create a variable `chart3_panel` that stores a `tabPanel()` for my chart 3
 # page
 chart3_panel <- tabPanel(
-  titlePanel('chart 3'),
+  titlePanel('Map of Violent Crime in Seattle'),
   sidebarLayout(
     chart3_sidebar_content,
     chart3_main_content

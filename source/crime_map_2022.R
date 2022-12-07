@@ -6,20 +6,13 @@
 library(dplyr)
 library(leaflet)
 
-# source('data_cleaning_small.R')
-source('data_cleaning.R')
+source('data_cleaning_small.R')
+# source('data_cleaning.R')
 
 
 # add a Year column to the dataframe so that the dataframe can be subset to
 # contain only data from 2022. 
-crime_data_2022 <- crime_data %>%
-              mutate(
-                Year = format(
-                  as.POSIXct(
-                    Offense.Start.DateTime, format = '%Y-%m-%d %H:%M:%S'),
-                  '%Y'
-                )
-              ) %>% filter(Year == '2022')
+crime_data_2022 <- crime_data %>% filter(Year == '2018')
 
 # initialize a color palette for the map so each crime appears as a different
 # color
