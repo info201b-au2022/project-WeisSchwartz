@@ -9,8 +9,8 @@ library(leaflet)
 library(plotly)
 
 # Pull dataframe from data cleaning file
-source('data_cleaning_small.R')
-#source('data_cleaning.R')
+#source('data_cleaning_small.R')
+source('data_cleaning.R')
 
 
 ###
