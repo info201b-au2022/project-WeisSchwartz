@@ -10,9 +10,10 @@ library(ggplot2)
 library(hrbrthemes)
 library(scales)
 
+
 # Pull dataframe from data cleaning file
 #source('data_cleaning_small.R')
-source('data_cleaning_small.R')
+source('data_cleaning.R')
 
 # Define shiny server
 server <- function(input, output){
@@ -71,36 +72,31 @@ server <- function(input, output){
   #remove years before 2007
   crime_data <- crime_data %>%
     filter(Year > 2006)
-    drop_na()
-  
-  #create column that assigns the numerical value "1" to each crime
-  crime_data <- crime_data %>%
-    mutate(
-      crime_data,
-      number_of_crime = 1
-    )
   
   # Define reactive expression to create pie chart
   pie_chart <- reactive({
-  
-  # Filter crimes dataset by year and crime type
-    crimes_by_year_and_type <- crime_data %>%
-      filter(Year == input$pie_year, Offense.Parent.Group == input$crime_type)
-  
-  #Calculate percentage of crimes by type 
-  crimes_by_type <- crimes_by_year_and_type %>%
+
+  # Filter and summarize data
+    pie_data <- crime_data %>%
+      filter(Year == input$pie_year) %>%
       group_by(Offense.Parent.Group) %>%
       summarize(Total = n()) %>%
-      mutate(Percentage = round(Total / sum(Total) * 100, 1))  
+      mutate(Percentage = round(Total / sum(Total), 1))
   
   #Create pie chart
-  pie(crimes_by_type$Total, labels = paste(crimes_by_type$Percentage, "%"),
-      main = paste("Percentage of", input$crime_type))
-  })
-  
+    ggplot(pie_data, na.rm = TRUE, aes(x = "", y = Total, fill = Offense.Parent.Group)) +
+      geom_bar(width = 1, stat = "identity") +
+      coord_polar("y", start = 0) +
+      geom_text(aes(label = scales::percent(Percentage)),
+                position = position_stack(vjust = 0.5),
+                color = "black") +
+      labs(title = paste("Crime Category Percentages")) +
+      guides(fill = guide_legend(title = "Offense Categories")) +
+      theme_void()
+})
   output$pie <- renderPlot({
     pie_chart()
-  })
+})
   
   ###
   # Chart 3 - Crime Map
