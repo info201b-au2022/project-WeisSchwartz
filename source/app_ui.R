@@ -6,10 +6,11 @@
 # ui.R
 library(shiny)
 library(leaflet)
+library(plotly)
 
 # Pull dataframe from data cleaning file
-#source('data_cleaning_small.R')
-source('data_cleaning.R')
+source('data_cleaning_small.R')
+#source('data_cleaning.R')
 
 
 ###
@@ -43,12 +44,11 @@ intro_main_content <- mainPanel(
     and 1.02 million rows. To provide a more specific report, we decided within 
     the data set, to focus only on crimes that would affect pedestrians which 
     include: '),
-  # p(c("Aggravated Assault", "Simple Assault", "Intimidation",
-  #     "Murder & nonnegligent manslaughter","Robbery", "Kidnapping/Abduction",
-  #     "Forcible Rape","Forcible Sodomy","Sexual Assault with an Object",
-  #     "Forcible Fondling","Weapon Law Violations","Disorderly Conduct",
-  #     "Driving Under the Influence","Drunkenness")
-  #   ),
+  p("Aggravated Assault, Simple Assault, Intimidation,
+      Murder & nonnegligent manslaughter,Robbery, Kidnapping/Abduction,
+      Forcible Rape,Forcible Sodomy, Sexual Assault with an Object,
+      Forcible Fondling,Weapon Law Violations,Disorderly Conduct,
+      Driving Under the Influence, Drunkenness"),
   h2("Explore our Interactive Visualizations"),
   h4("1. Visualization of Crime by Hour"),
   p("How does the time of day impact crime committed?"),
@@ -251,7 +251,7 @@ summary_panel <- tabPanel(
 # Define a variable `report_main_content` that is a `mainPanel()` for my
 # report page that contains
 report_main_content <- mainPanel(
-  htmltools::includeMarkdown("../docs/final-report.Rmd")
+  htmltools::includeMarkdown("final-report.Rmd")
 )
 
 # Create a variable `report_panel` that stores a `tabPanel()` for my report

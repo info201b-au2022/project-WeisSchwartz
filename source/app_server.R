@@ -11,8 +11,8 @@ library(hrbrthemes)
 library(scales)
 
 # Pull dataframe from data cleaning file
-#source('data_cleaning_small.R')
-source('data_cleaning.R')
+source('data_cleaning_small.R')
+#source('data_cleaning.R')
 
 # Define shiny server
 server <- function(input, output){

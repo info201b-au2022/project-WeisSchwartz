@@ -5,9 +5,9 @@ account: weisschwartz
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7820819
-bundleId: 6595788
+bundleId: 6612908
 url: https://weisschwartz.shinyapps.io/source/
-when: 1670274264.08086
-lastSyncTime: 1670274264.08087
+when: 1670539245.16058
+lastSyncTime: 1670539245.1606
 asMultiple: FALSE
 asStatic: FALSE
