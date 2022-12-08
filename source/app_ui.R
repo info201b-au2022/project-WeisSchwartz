@@ -9,7 +9,7 @@ library(leaflet)
 
 # Pull dataframe from data cleaning file
 #source('data_cleaning_small.R')
-source('data_cleaning.R')
+source('data_cleaning_small.R')
 
 
 ###
@@ -34,7 +34,7 @@ intro_panel <- tabPanel(
 
 
 ###
-# Chart 1
+# Chart 1 - Line Graph
 ###
 
 
@@ -42,19 +42,20 @@ intro_panel <- tabPanel(
 # my chart 1 page:
 
 chart1_sidebar_content <- sidebarPanel(
-  p('chart 1 sidebar')
+  sliderInput('line_year', 'Select Year', min(2007),
+              max(crime_data$Year), value=range(crime_data$Year)[2]
+              ),
 )
-
 # Define a variable `chart1_main_content` that is a `mainPanel()` for my
 # chart 1 page that contains
 chart1_main_content <- mainPanel(
-  p('chat 1 main panel')
+  plotOutput('line')
 )
 
 # Create a variable `chart1_panel` that stores a `tabPanel()` for my chart 1
 # page
 chart1_panel <- tabPanel(
-  titlePanel('chart 1'),
+  titlePanel('Visualization of Crime by Hour'),
   sidebarLayout(
     chart1_sidebar_content,
     chart1_main_content
@@ -63,7 +64,7 @@ chart1_panel <- tabPanel(
 
 
 ###
-# Chart 2
+# Chart 2 - Pie Chart
 ###
 
 
@@ -71,25 +72,28 @@ chart1_panel <- tabPanel(
 # my chart 2 page:
 
 chart2_sidebar_content <- sidebarPanel(
-  p('chart 2 sidebar')
+  sliderInput('pie_year', 'Select Year', min(2007),
+              max(crime_data$Year), value=range(crime_data$Year)[2]
+  ),
+  selectInput('crime_type', 'Select Crime Type',
+              unique(crime_data$Offense))
 )
 
 # Define a variable `chart2_main_content` that is a `mainPanel()` for my
 # chart 2 page that contains
 chart2_main_content <- mainPanel(
-  p('chat 2 main panel')
+  plotOutput('pie')
 )
 
 # Create a variable `chart2_panel` that stores a `tabPanel()` for my chart 2
 # page
 chart2_panel <- tabPanel(
-  titlePanel('chart 2'),
+  titlePanel('Common Types of Violent Crime'),
   sidebarLayout(
     chart2_sidebar_content,
     chart2_main_content
   )
 )
-
 
 ###
 # Chart 3 - Crime Map
@@ -107,8 +111,8 @@ chart3_sidebar_content <- sidebarPanel(
               unique(crime_data$Offense)),
   p('Please manually zoom in on Seattle, Leaflet has trouble initializing
     the map with so many data points :,)'),
-  p('Also, to start dispalying the data points please start by manually
-    selecting a new crime type, this is another Leaflet frusteration.')
+  p('Also, to start displaying the data points please start by manually
+    selecting a new crime type, this is another Leaflet frustration.')
 )
 
 # Define a variable `chart3_main_content` that is a `mainPanel()` for my

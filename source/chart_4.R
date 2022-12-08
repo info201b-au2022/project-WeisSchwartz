@@ -4,7 +4,7 @@
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
-#install.packages("scales")
+library(scales)
 
 source("data_cleaning.R")
 
