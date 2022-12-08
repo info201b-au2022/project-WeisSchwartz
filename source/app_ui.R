@@ -20,10 +20,36 @@ source('data_cleaning.R')
 # introduction page that contains the text and formatting for the introduction
 # page
 intro_main_content <- mainPanel(
-  h1('Header 1'),
-  p('text'),
-  h2('Header 2'),
-  p('text')
+  h1('Introduction'),
+  p('Too often, pedestrians fall victim to incidents of robbery, battery and gun
+    violence. As students, safety on the streets is a concern even near campus, 
+    where rates of violent crimes are increasing. This project will parse through 
+    the SPD Crime dataset to analyze where and when crimes against persons have 
+    happened in Seattle. Through patterns highlighted, this project aims to 
+    provide a tool that makes it safer for college students to travel Seattle 
+    safely.'),
+  h2('Questions'),
+  uiOutput("questionList"),
+  h3('Data'),
+  p('Our questions were answered using the Seattle Police Department’s
+    (SPD) crime data collected from 2008-Present. The data collected relies on 
+    the National Incident-Based Reporting System (NIBRS), the standardization of
+    crime classifications allows for comparison over time. It’s important to note
+    that only finalized (Uniform Crime Reporting approved) reports are released 
+    and included in this data set. As a whole, this dataset included 17 columns 
+    and 1.02 million rows. To provide a more specific report, we decided within 
+    the data set, to focus only on crimes that would affect pedestrians which 
+    include: '),
+  uiOutput("focusedCrimes"),
+  tags$figure(
+    align = "center",
+    tags$img(
+      src = "picture.jpg",
+      width = 600,
+      alt = "https://www.foxnews.com/us/u-washington-students-defend-themselves-from-potential-sex-offender-following-assaults-near-campus"
+    ),
+    tags$figcaption("this is a picture")
+)
 )
 
 # Create a variable `intro_panel` that stores a `tabPanel()` for my first page
@@ -187,7 +213,8 @@ summary_panel <- tabPanel(
 # Define a variable `report_main_content` that is a `mainPanel()` for my
 # report page that contains
 report_main_content <- mainPanel(
-  p('report main panel')
+  p('report main panel'),
+  htmltools::includeMarkdown("../docs/report.md")
 )
 
 # Create a variable `report_panel` that stores a `tabPanel()` for my report

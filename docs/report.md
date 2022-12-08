@@ -39,38 +39,31 @@ Despite the harms that our project may cause, there are many benefits. Our proje
 - **How does the time of day impact crime committed?** This question can be investigated in terms of type of crime committed along with frequency of overall crime given a time. As the motive is to find ways to improve citizen safety, this is important because by identifying which times are most “unsafe,” safety can be improved by avoiding being out during such times. 
 - **Where in Seattle do violent crimes occur most?** This question will be investigated by analyzing the coordinates at which violent crimes occurred, and determining if there are specific locations where these crimes cluster around. This will improve pedestrian safety as it will reveal where in Seattle crime is most likely to happen, and help users avoid these locations to reduce their risk of harm.
 ## Dataset
-Our dataset is related to our problem domain because all of our research questions concern crime within the limited scope of Seattle. Our dataset records information regarding just that, allowing us to answer questions regarding trends and patterns in types of crime committed since there are 17 variables for each observation. More specifically, we can analyze trends in the relationship between crime rates and the time of day at which they were committed. Moreover, the location variable allows us to pinpoint which pockets of Seattle are most susceptible to high crime rates, and we can even intersect this location with time of day to see how criminal activity fluctuates across the city throughout the day. We can also directly answer the question regarding trends in types of crimes occurring at certain times of year since the data set includes the date in which the crimes were committed.
-
-### Table
-
+All of our research questions concern crime within the limited scope of Seattle. While our dataset comes from a larger database (NIBRS), all data within Seattle’s domain was extracted for both the Seattle Police Department and city public to access and use. This allows us to answer questions regarding trends and patterns in types of crime committed since there are 17 variables for each observation. More specifically, we can analyze trends in the relationship between crime rates and the time of day at which they were committed. Moreover, the location variable allows us to pinpoint which pockets of Seattle are most susceptible to high crime rates, and we can even intersect this location with time of day to see how criminal activity fluctuates across the city throughout the day. We can also directly answer the question regarding trends in types of crimes occurring at certain times of year since the data set includes the date in which the crimes were committed.  
+  
 |Element | Detail|
 |--------| ----------
 |Filename | SPD_Crime_Data__2008-Present|
 |Number of observations | 1.01 million|
 |Number of variables | 17|
 
-### Citation
-Spd. “SPD Crime Data: 2008-Present: City of Seattle Open Data Portal.” Seattle Open Data, 31 Oct. 2022, https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5. 
-
 ### Provenence
+**Collection of data:** All data within Seattle’s domain was extracted for both the Seattle Police Department and city public to access and use. This data has been collected from 2008 to present and only includes Uniform Crime Reporting System (UCRS) approved reports. The dataset is updated every 24 hours.  
+**Data collection funding:** The collection of data is funded by the Seattle Police Department and subsequently the City of Seattle. While there is no direct monetary gain from collection of such data especially as this data is made public, the Seattle Police Department could potentially benefit from data collected if Data is used to improve efficiency within the police department.  
+**Data validation:** The data is validated and held secure by utilizing the National Incident-Based Reporting System (NIBRS) in conjunction with UCRS. The collection of data is standardized through a clear set of definitions and classifications. Through such standardization of data collection allows for comparison over time.  
+**Obtaining Data:** The city of Seattle provides an open data platform where anybody can find, analyze, and download data published by City departments. Such open data is meant to encourage public understanding, empower City employees to be more effective, and encourage the development of innovative technology solutions that improve quality of life. The dataset is included below. 
 
-Collection of data: All data within Seattle’s domain was extracted for both the Seattle Police Department and city public to access and use. This data has been collected from 2008 to present and only includes Uniform Crime Reporting System (UCRS) approved reports. The dataset is updated every 24 hours. 
-
-Data collection funding: The collection of data is funded by the Seattle Police Department and subsequently the City of Seattle. While there is no direct monetary gain from collection of such data especially as this data is made public, the Seattle Police Department could potentially benefit from data collected if Data is used to improve efficiency within the police department. 
-
-Data validation: The data is validated and held secure by utilizing the National Incident-Based Reporting System (NIBRS) in conjunction with UCRS. The collection of data is standardized through a clear set of definitions and classifications. Through such standardization of data collection allows for comparison over time.
-
-Obtaining Data: The city of Seattle provides an open data platform where anybody can find, analyze, and download data published by City departments. Such open data is meant to encourage public understanding, empower City employees to be more effective, and encourage the development of innovative technology solutions that improve quality of life. 
-
+### Citation
+Spd. “SPD Crime Data: 2008-Present: City of Seattle Open Data Portal.” Seattle Open Data, 31 Oct. 2022, https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5.  
 ## Findings
 
-### What are the most common types of violent crime in Seattle?
+**What are the most common types of violent crime in Seattle?**
 SOMETHING IDK
 
-### How does the time of day impact crime committed?
+**How does the time of day impact crime committed?**
 SOMETHING IDK
 
-### Where in Seattle do violent crimes occur most?
+**Where in Seattle do violent crimes occur most?**
 Through the map visualization, across all crime types, there are significantly more crime occurrences in downtown Seattle, Belltown, the South end of Capitol Hill and International District. For person-on-person crimes such as assault and intimidation, more crime recordings are observed around the U District, Ballard and North Aurora Avenue as well. It’s interesting to note that these crime patterns have not changed much over time, with the exception of Ballard, which did not seem to have as high of a concentration of violent crime pre-2010. 
 
 ### Discussion
@@ -88,7 +81,7 @@ Lastly, with information on the geographical distribution of crime in Seattle, i
 ## References 
 Helfgott, J.B., Parkin, W.S., Fisher, C., Diaz, A. "Misdemeanor arrests and community perceptions of fear of crime in Seattle." Journal of Criminal Justice 69 (2020). https://doi.org/10.1016/j.jcrimjus.2020.101695.  
 Groff, E.R., Weisburd, D., Yang, SM. "Is it Important to Examine Crime Trends at a Local 'Micro' Level?: A Longitudinal Analysis of Street to Street Variability in Crime Trajectories." J Quant Criminol 26, 7–32 (2010). https://doi.org/10.1007/s10940-009-9081-y  
-Pauley, Spencer. “Seattle Struggles with 'Reinventing' Policing as Crime Soars.” The Center Square, 20 July 2022, https://www.thecentersquare.com/washington/seattle-struggles-with-reinventing-policing-as-crime-soars/article_2bb0f8fe-0470-11ed-8d39-3b909b5d3301.html. 
+Pauley, Spencer. “Seattle Struggles with 'Reinventing' Policing as Crime Soars.” The Center Square, 20 July 2022, https://www.thecentersquare.com/washington/seattle-struggles-with-reinventing-policing-as-crime-soars/article_2bb0f8fe-0470-11ed-8d39-3b909b5d3301.html.  
 “Seattle Police Case Study.” The Center for Evidence-Based Crime Policy (CEBCP), 7 Apr. 2020, https://cebcp.org/evidence-based-policing/what-works-in-policing/seattle-police-case-study/. 
 ### Dataset:
 Spd. “SPD Crime Data: 2008-Present: City of Seattle Open Data Portal.” Seattle Open Data, 31 Oct. 2022, https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5.  

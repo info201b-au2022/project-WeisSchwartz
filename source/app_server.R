@@ -6,6 +6,7 @@
 library(dplyr)
 library(tidyr)
 library(plotly)
+library(shiny)
 
 # Pull dataframe from data cleaning file
 #source('data_cleaning_small.R')
@@ -13,7 +14,25 @@ source('data_cleaning.R')
 
 # Define shiny server
 server <- function(input, output){
+  
   ###
+  #elements for intro
+  ###
+  
+  #create bullet list of questions
+  output$questionList<- renderUI(HTML(markdown::renderMarkdown(
+    text = "- What are the most common types of violent crime in Seattle?\n- How does the time of day impact crime committed?\n- Where in Seattle do violent crimes occur the most?\n")))
+ 
+  #create bullet list of focused crimes
+  crimes <- c("Aggravated Assault", "Simple Assault", "Intimidation",
+              "Murder & nonnegligent manslaughter", "Robbery",
+              "Kidnapping/Abduction", "Forcible Rape", "Forcible Sodomy",
+              "Sexual Assault with an Object", "Forcible Fondling",
+              "Weapon Law Violations", "Disorderly Conduct",
+              "Driving Under the Influence", "Drunkenness")
+  output$focusedCrimes <- renderUI(HTML(markdown:: renderMarkdown(paste(paste0("- ", crimes, "\n", collapse = "")))))
+  
+   ###
   # Chart 1
   ###
   
