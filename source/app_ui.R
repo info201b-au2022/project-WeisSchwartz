@@ -40,17 +40,8 @@ intro_main_content <- mainPanel(
     and 1.02 million rows. To provide a more specific report, we decided within 
     the data set, to focus only on crimes that would affect pedestrians which 
     include: '),
-  uiOutput("focusedCrimes"),
-  tags$figure(
-    align = "center",
-    tags$img(
-      src = "picture.jpg",
-      width = 600,
-      alt = "https://www.foxnews.com/us/u-washington-students-defend-themselves-from-potential-sex-offender-following-assaults-near-campus"
-    ),
-    tags$figcaption("this is a picture")
-)
-)
+  img('description', src = "picture.jpg")
+ )
 
 # Create a variable `intro_panel` that stores a `tabPanel()` for my first page
 intro_panel <- tabPanel(
@@ -106,7 +97,8 @@ chart2_sidebar_content <- sidebarPanel(
 # Define a variable `chart2_main_content` that is a `mainPanel()` for my
 # chart 2 page that contains
 chart2_main_content <- mainPanel(
-  plotOutput('pie')
+  plotlyOutput('pie')
+  # plotOutput('pie')
 )
 
 # Create a variable `chart2_panel` that stores a `tabPanel()` for my chart 2
@@ -215,14 +207,13 @@ summary_panel <- tabPanel(
 # Define a variable `report_main_content` that is a `mainPanel()` for my
 # report page that contains
 report_main_content <- mainPanel(
-  p('report main panel'),
   htmltools::includeMarkdown("../docs/report.md")
 )
 
 # Create a variable `report_panel` that stores a `tabPanel()` for my report
 # page
 report_panel <- tabPanel(
-  titlePanel('report'),
+  titlePanel('Report'),
   report_main_content
 )
 

@@ -3,6 +3,7 @@
 #    Kensho Gendzwill
 #    Autumn 2022
 
+
 library(dplyr)
 library(tidyr)
 library(plotly)
@@ -65,38 +66,74 @@ server <- function(input, output){
                          labels = unique(total_crime_by_hour$Hour))
   })
   
+  
   ###
   # Chart 2
   ###
   
-  #remove years before 2007
+  # remove years before 2007
   crime_data <- crime_data %>%
     filter(Year > 2006)
   
-  # Define reactive expression to create pie chart
-  pie_chart <- reactive({
-
-  # Filter and summarize data
+  # Define the pie chart output
+  output$pie <- renderPlotly({
+    # Filter and summarize data
     pie_data <- crime_data %>%
-      filter(Year == input$pie_year) %>%
-      group_by(Offense.Parent.Group) %>%
-      summarize(Total = n()) %>%
-      mutate(Percentage = round(Total / sum(Total), 1))
+            filter(Year == input$pie_year) %>%
+            group_by(Offense) %>%
+            summarize(Total = n()) %>%
+            mutate(Percentage = round(Total / sum(Total), 1))
+    
+    # Set up the pie chart
+    fig <- plot_ly(pie_data, labels = ~Offense, values = ~Total,
+                   type = 'pie',
+                   textinfo = 'percent',
+                   insidetextfont = list(color = '#FFFFFF'),
+                   hoverinfo = 'text',
+                   text = ~paste0(Offense,': ',
+                                  Total, ' total offenses'),
+                   marker = list(colors = colors,
+                                 line = list(color = '#FFFFFF', width = 1))
+    )
+    
+    # set up a layout for the pie chart
+    fig <- fig %>%
+      layout(
+        title = paste0(
+          'Breakdown of Violent Crime in Seattle', '(', input$pie_year, ')'
+        ),
+        margin = list(l = 50, r = 50, b = 50, t = 100,  pad = 4),
+        yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
+      )
+    
+    fig
+  })
   
-  #Create pie chart
-    ggplot(pie_data, na.rm = TRUE, aes(x = "", y = Total, fill = Offense.Parent.Group)) +
-      geom_bar(width = 1, stat = "identity") +
-      coord_polar("y", start = 0) +
-      geom_text(aes(label = scales::percent(Percentage)),
-                position = position_stack(vjust = 0.5),
-                color = "black") +
-      labs(title = paste("Crime Category Percentages")) +
-      guides(fill = guide_legend(title = "Offense Categories")) +
-      theme_void()
-})
-  output$pie <- renderPlot({
-    pie_chart()
-})
+#   # Define reactive expression to create pie chart
+#   pie_chart <- reactive({
+# 
+#   # Filter and summarize data
+#     pie_data <- crime_data %>%
+#       filter(Year == input$pie_year) %>%
+#       group_by(Offense) %>%
+#       summarize(Total = n()) %>%
+#       mutate(Percentage = round(Total / sum(Total), 1))
+#   
+#   #Create pie chart
+#     ggplot(pie_data, na.rm = TRUE, aes(x = "", y = Total, fill = Offense)) +
+#       geom_bar(width = 1, stat = "identity") +
+#       coord_polar("y", start = 0) +
+#       geom_text(aes(label = scales::percent(Percentage)),
+#                 position = position_stack(vjust = 0.5),
+#                 color = "black") +
+#       labs(title = paste("Crime Category Percentages")) +
+#       guides(fill = guide_legend(title = "Offense Categories")) +
+#       theme_void()
+# })
+#   output$pie <- renderPlot({
+#     pie_chart()
+# })
+  
   
   ###
   # Chart 3 - Crime Map
