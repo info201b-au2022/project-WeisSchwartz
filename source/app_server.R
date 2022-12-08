@@ -10,7 +10,7 @@ library(ggplot2)
 library(hrbrthemes)
 library(scales)
 
-
+View(crime_data)
 # Pull dataframe from data cleaning file
 #source('data_cleaning_small.R')
 source('data_cleaning.R')
@@ -41,6 +41,7 @@ server <- function(input, output){
         '%H'
       )
     )
+
   #create dataframe of number of crimes committed by hour of the day
   total_crime_by_hour <- crime_data %>%
     group_by(Year, Hour) %>%
@@ -56,7 +57,7 @@ server <- function(input, output){
     total_crime_by_hour %>% 
       filter(Year == input$line_year) %>%
       mutate(Hour = as.numeric(factor(Hour))) %>%
-      ggplot(aes(x = Hour, y = number_of_crimes_line, group = Year, color = 'red')) +
+      ggplot(aes(x = Hour, y = number_of_crimes_line, group = Year, color = "red")) +
       geom_line() +
       theme_ipsum() +
       labs(y = "Number of Crimes Committed") +
@@ -65,7 +66,6 @@ server <- function(input, output){
                          labels = unique(total_crime_by_hour$Hour))
   })
   
-  ###
   # Chart 2
   ###
   
@@ -73,30 +73,30 @@ server <- function(input, output){
   crime_data <- crime_data %>%
     filter(Year > 2006)
   
-  # Define reactive expression to create pie chart
-  pie_chart <- reactive({
-
-  # Filter and summarize data
-    pie_data <- crime_data %>%
-      filter(Year == input$pie_year) %>%
-      group_by(Offense.Parent.Group) %>%
-      summarize(Total = n()) %>%
-      mutate(Percentage = round(Total / sum(Total), 1))
-  
-  #Create pie chart
-    ggplot(pie_data, na.rm = TRUE, aes(x = "", y = Total, fill = Offense.Parent.Group)) +
-      geom_bar(width = 1, stat = "identity") +
-      coord_polar("y", start = 0) +
-      geom_text(aes(label = scales::percent(Percentage)),
-                position = position_stack(vjust = 0.5),
-                color = "black") +
-      labs(title = paste("Crime Category Percentages")) +
-      guides(fill = guide_legend(title = "Offense Categories")) +
-      theme_void()
-})
-  output$pie <- renderPlot({
-    pie_chart()
-})
+  #   # Define reactive expression to create pie chart
+     pie_chart <- reactive({
+   
+     # Filter and summarize data
+       pie_data <- crime_data %>%
+         filter(Year == input$pie_year) %>%
+         group_by(Offense) %>%
+         summarize(Total = n()) %>%
+         mutate(Percentage = round(Total / sum(Total), 1))
+     
+  #   #Create pie chart
+       ggplot(pie_data, na.rm = TRUE, aes(x = "", y = Total, fill = Offense)) +
+         geom_bar(width = 1, stat = "identity") +
+        coord_polar("y", start = 0) +
+        geom_text(aes(label = scales::percent(Percentage)),
+                  position = position_stack(vjust = 0.5),
+                   color = "black") +
+         labs(title = paste("Breakdown of Violent Crime Types in Seattle")) +
+         guides(fill = guide_legend(title = "Offense Categories")) +
+         theme_void()
+   })
+     output$pie <- renderPlot({
+       pie_chart()
+ })
   
   ###
   # Chart 3 - Crime Map

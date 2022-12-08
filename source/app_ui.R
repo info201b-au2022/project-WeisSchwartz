@@ -69,13 +69,28 @@ intro_panel <- tabPanel(
 
 chart1_sidebar_content <- sidebarPanel(
   sliderInput('line_year', 'Select Year', min(2007),
-              max(crime_data$Year), value=range(crime_data$Year)[2]
-              ),
+              max(crime_data$Year), value=range(crime_data$Year)[2]),
+  p("The hour '00' stands for midnight")
 )
+
 # Define a variable `chart1_main_content` that is a `mainPanel()` for my
 # chart 1 page that contains
 chart1_main_content <- mainPanel(
-  plotOutput('line')
+  plotOutput('line'),
+  h1('Summary'),
+  h2('About This Chart'),
+  p("This line graph shows the number of crimes committed per hour in Seattle for a given year. Data before 2007 was omitted due to a lack of sufficient data 
+    to produce a useful visualization on the graph. We chose a line graph so that users can see how much crime is committed at what time in the day. Users 
+    can use the slider to select which year they'd like to look at to potentially see the difference in crime rates over the years. This line graph may help 
+    pedestrians to be more cautious and aware of certain times in the day where crime appears to more frequent."),
+  h2('Overall Trends and Insights'),
+  p("Across all years from 2007-2022, there is a noticeable spike in the number of crimes committed around midnight. It can be observed that the number of crimes 
+    committed appears to be very high right before midnight as well until around 2019. Crime reached an all-time high in Seattle in 2021 with the number of crimes 
+    reaching almost 1250 around midnight. This increase could be related to the appearance of COVID-19 and social justive movements such as Black Lives Matter and 
+    Stop Asian Hate."),
+  p("Similarly, the decline in crime during the day since the pandemic started could be a result of the stay-at-home mandate and self distancing. 
+    The most infrequent times of crime are consistently around 5-6 am, with crime then rising steadidly throughout the day. The amount and pattern of crimes reported 
+    in 2007 is low and infrequent compared to the rest of the years which could be due to a lack of data and/or reports.")
 )
 
 # Create a variable `chart1_panel` that stores a `tabPanel()` for my chart 1
@@ -99,14 +114,28 @@ chart1_panel <- tabPanel(
 
 chart2_sidebar_content <- sidebarPanel(
   sliderInput('pie_year', 'Select Year', min(2007),
-              max(crime_data$Year), value=range(crime_data$Year)[2]
-  ),
+              max(crime_data$Year), value=range(crime_data$Year)[2]),
+  p('Slices that appear as 0% may be disproportionate in size as there may
+    be a minimum threshold for the size of a slice')
 )
 
 # Define a variable `chart2_main_content` that is a `mainPanel()` for my
 # chart 2 page that contains
 chart2_main_content <- mainPanel(
-  plotOutput('pie')
+  plotOutput('pie'),
+  h1('Summary'),
+  h2('About This Graph'),
+  p("This pie chart showcases the most common types of violent crime in Seattle. Data before 2007 was omitted due to a lack of sufficient 
+    data to produce a useful visualization on the chart. We chose a pie chart so that users can see the percentages and ratios of different types of crime.
+    Users can use the slider to choose which year they'd like to look at and potentially see how the percentages have changed over time. This pie chart may help
+    pedestrians be informed on what types of crime are more likely to occur and to be cautious of."),
+  p("For the main types of crime shown, we filtered violent crimes from the dataset that we thought would be most relevant to pedestrians. There are 7 shown."),
+  h2('Overall Trends and Insights'),
+  p("Across all years from 2007-2022, Simple Assault remains as the most frequent type of crime at around consistely 40% with Aggravated Assault and Intimidation 
+    following behind. This may be due to the fact that Simple Assault can be an act of unwanted physical contact. Weapon Law Violations, Robbery, and Drunkenness
+    appear to be the lowest committed crime types. Drunkenness was absent until 2019."),
+  p("The year 2007 has only 4 types shown which may be due to lack of data and/or reports. Additionally, a crime type being highly common is not equivalant to its
+    level of risk, it simply means that it occurs more. Pedestrians should keep in mind both how common and how dangerous a crime is.")
 )
 
 # Create a variable `chart2_panel` that stores a `tabPanel()` for my chart 2
