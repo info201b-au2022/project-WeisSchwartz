@@ -32,7 +32,7 @@ intro_main_content <- mainPanel(
     provide a tool that makes it safer for college students to travel Seattle 
     safely.'),
   h2('Questions'),
-  uiOutput("questionList"),
+  p("- How does the time of day impact crime committed?\n- What are the most common types of violent crime in Seattle?\n- Where in Seattle do violent crimes occur most?"),
   h2('About the Dataset'),
   p('Our questions were answered using the Seattle Police Department’s
     (SPD) crime data collected from 2008-Present. The data collected relies on 
@@ -43,7 +43,12 @@ intro_main_content <- mainPanel(
     and 1.02 million rows. To provide a more specific report, we decided within 
     the data set, to focus only on crimes that would affect pedestrians which 
     include: '),
-  uiOutput("crime"),
+  # p(c("Aggravated Assault", "Simple Assault", "Intimidation",
+  #     "Murder & nonnegligent manslaughter","Robbery", "Kidnapping/Abduction",
+  #     "Forcible Rape","Forcible Sodomy","Sexual Assault with an Object",
+  #     "Forcible Fondling","Weapon Law Violations","Disorderly Conduct",
+  #     "Driving Under the Influence","Drunkenness")
+  #   ),
   h2("Explore our Interactive Visualizations"),
   h4("1. Visualization of Crime by Hour"),
   p("How does the time of day impact crime committed?"),
@@ -124,8 +129,7 @@ chart2_sidebar_content <- sidebarPanel(
 # Define a variable `chart2_main_content` that is a `mainPanel()` for my
 # chart 2 page that contains
 chart2_main_content <- mainPanel(
-<<<<<<< HEAD
-  plotOutput('pie'),
+  plotlyOutput('pie'),
   h1('Summary'),
   h2('About This Graph'),
   p("This pie chart showcases the most common types of violent crime in Seattle. Data before 2007 was omitted due to a lack of sufficient 
@@ -139,10 +143,6 @@ chart2_main_content <- mainPanel(
     appear to be the lowest committed crime types. Drunkenness was absent until 2019."),
   p("The year 2007 has only 4 types shown which may be due to lack of data and/or reports. Additionally, a crime type being highly common is not equivalant to its
     level of risk, it simply means that it occurs more. Pedestrians should keep in mind both how common and how dangerous a crime is.")
-=======
-  plotlyOutput('pie')
-  # plotOutput('pie')
->>>>>>> a3be3d14c9d35757252f172adb89283fe2d67603
 )
 
 # Create a variable `chart2_panel` that stores a `tabPanel()` for my chart 2
@@ -251,7 +251,7 @@ summary_panel <- tabPanel(
 # Define a variable `report_main_content` that is a `mainPanel()` for my
 # report page that contains
 report_main_content <- mainPanel(
-  htmltools::includeMarkdown("../docs/report.md")
+  htmltools::includeMarkdown("../docs/final-report.Rmd")
 )
 
 # Create a variable `report_panel` that stores a `tabPanel()` for my report
