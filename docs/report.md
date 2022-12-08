@@ -82,6 +82,7 @@ Lastly, with information on the geographical distribution of crime in Seattle, i
 Helfgott, J.B., Parkin, W.S., Fisher, C., Diaz, A. "Misdemeanor arrests and community perceptions of fear of crime in Seattle." Journal of Criminal Justice 69 (2020). https://doi.org/10.1016/j.jcrimjus.2020.101695.  
 Groff, E.R., Weisburd, D., Yang, SM. "Is it Important to Examine Crime Trends at a Local 'Micro' Level?: A Longitudinal Analysis of Street to Street Variability in Crime Trajectories." J Quant Criminol 26, 7–32 (2010). https://doi.org/10.1007/s10940-009-9081-y  
 Pauley, Spencer. “Seattle Struggles with 'Reinventing' Policing as Crime Soars.” The Center Square, 20 July 2022, https://www.thecentersquare.com/washington/seattle-struggles-with-reinventing-policing-as-crime-soars/article_2bb0f8fe-0470-11ed-8d39-3b909b5d3301.html.  
-“Seattle Police Case Study.” The Center for Evidence-Based Crime Policy (CEBCP), 7 Apr. 2020, https://cebcp.org/evidence-based-policing/what-works-in-policing/seattle-police-case-study/. 
+“Seattle Police Case Study.” The Center for Evidence-Based Crime Policy (CEBCP), 7 Apr. 2020, https://cebcp.org/evidence-based-policing/what-works-in-policing/seattle-police-case-study/.  
+“U Washington Students Defend Themselves from Potential Sex Offender Threat Following Assaults near Campus.” Fox News, 13 Oct. 2022, www.foxnews.com/us/u-washington-students-defend-themselves-from-potential-sex-offender-following-assaults-near-campus.
 ### Dataset:
 Spd. “SPD Crime Data: 2008-Present: City of Seattle Open Data Portal.” Seattle Open Data, 31 Oct. 2022, https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5.  

@@ -20,7 +20,10 @@ source('data_cleaning.R')
 # introduction page that contains the text and formatting for the introduction
 # page
 intro_main_content <- mainPanel(
-  h1('Introduction'),
+  h1(strong("Crime in Seattle")),
+  h4(em("Authors: Angela Menge, Ellen Huynh, Kensho Gendzwill, Nathan Lee")),  
+  h4("Affiliation: INFO-201: Technical Foundations of Informatics - The Information School - University of Washington"),
+  h2('Introduction'),
   p('Too often, pedestrians fall victim to incidents of robbery, battery and gun
     violence. As students, safety on the streets is a concern even near campus, 
     where rates of violent crimes are increasing. This project will parse through 
@@ -30,7 +33,7 @@ intro_main_content <- mainPanel(
     safely.'),
   h2('Questions'),
   uiOutput("questionList"),
-  h3('Data'),
+  h2('About the Dataset'),
   p('Our questions were answered using the Seattle Police Department’s
     (SPD) crime data collected from 2008-Present. The data collected relies on 
     the National Incident-Based Reporting System (NIBRS), the standardization of
@@ -40,7 +43,15 @@ intro_main_content <- mainPanel(
     and 1.02 million rows. To provide a more specific report, we decided within 
     the data set, to focus only on crimes that would affect pedestrians which 
     include: '),
-  img('description', src = "picture.jpg")
+  uiOutput("crime"),
+  h2("Explore our Interactive Visualizations"),
+  h4("1. Visualization of Crime by Hour"),
+  p("How does the time of day impact crime committed?"),
+  h4("2. Common Types of Violent Crime"),
+  p("What are the most common types of violent crime in Seattle?"),
+  h4("3. Map of Violent Crime in Seattle"),
+  p("Where in Seattle do violent crimes occur most?"),
+  img('University of Washington makes news because of crime. (Image courtesy foxnews.com)', src = "picture.jpg")
  )
 
 # Create a variable `intro_panel` that stores a `tabPanel()` for my first page

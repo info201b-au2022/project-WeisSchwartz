@@ -18,6 +18,32 @@ source('data_cleaning.R')
 
 # Define shiny server
 server <- function(input, output){
+ 
+  ###
+  #values to use in intro
+  ###
+  
+  #questions
+  output$questionList <- renderUI(HTML(markdown::renderMarkdown(text = "- How does the time of day impact crime committed?\n- What are the most common types of violent crime in Seattle?\n- Where in Seattle do violent crimes occur most?")))
+  
+  include_crime <- c("Aggravated Assault",
+"Simple Assault",
+"Intimidation",
+"Murder & nonnegligent manslaughter",
+"Robbery",
+"Kidnapping/Abduction",
+"Forcible Rape",
+"Forcible Sodomy",
+"Sexual Assault with an Object",
+"Forcible Fondling",
+"Weapon Law Violations",
+"Disorderly Conduct",
+"Driving Under the Influence",
+"Drunkenness"
+)
+  
+  output$crime <- renderUI(HTML(markdown::renderMarkdown(paste(paste0("- ", include_crime, "\n"), collapse = ""))))
+  
   ###
   # Chart 1
   ###
