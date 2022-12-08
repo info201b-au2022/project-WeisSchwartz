@@ -3,6 +3,7 @@
 #    Kensho Gendzwill
 #    Autumn 2022
 
+
 library(dplyr)
 library(tidyr)
 library(plotly)
@@ -17,6 +18,32 @@ source('data_cleaning.R')
 
 # Define shiny server
 server <- function(input, output){
+ 
+  ###
+  #values to use in intro
+  ###
+  
+  #questions
+  output$questionList <- renderUI(HTML(markdown::renderMarkdown(text = "- How does the time of day impact crime committed?\n- What are the most common types of violent crime in Seattle?\n- Where in Seattle do violent crimes occur most?")))
+  
+  include_crime <- c("Aggravated Assault",
+"Simple Assault",
+"Intimidation",
+"Murder & nonnegligent manslaughter",
+"Robbery",
+"Kidnapping/Abduction",
+"Forcible Rape",
+"Forcible Sodomy",
+"Sexual Assault with an Object",
+"Forcible Fondling",
+"Weapon Law Violations",
+"Disorderly Conduct",
+"Driving Under the Influence",
+"Drunkenness"
+)
+  
+  output$crime <- renderUI(HTML(markdown::renderMarkdown(paste(paste0("- ", include_crime, "\n"), collapse = ""))))
+  
   ###
   # Chart 1
   ###
@@ -66,13 +93,19 @@ server <- function(input, output){
                          labels = unique(total_crime_by_hour$Hour))
   })
   
+<<<<<<< HEAD
+=======
+  
+  ###
+>>>>>>> a3be3d14c9d35757252f172adb89283fe2d67603
   # Chart 2
   ###
   
-  #remove years before 2007
+  # remove years before 2007
   crime_data <- crime_data %>%
     filter(Year > 2006)
   
+<<<<<<< HEAD
   #   # Define reactive expression to create pie chart
      pie_chart <- reactive({
    
@@ -97,6 +130,67 @@ server <- function(input, output){
      output$pie <- renderPlot({
        pie_chart()
  })
+=======
+  # Define the pie chart output
+  output$pie <- renderPlotly({
+    # Filter and summarize data
+    pie_data <- crime_data %>%
+            filter(Year == input$pie_year) %>%
+            group_by(Offense) %>%
+            summarize(Total = n()) %>%
+            mutate(Percentage = round(Total / sum(Total), 1))
+    
+    # Set up the pie chart
+    fig <- plot_ly(pie_data, labels = ~Offense, values = ~Total,
+                   type = 'pie',
+                   textinfo = 'percent',
+                   insidetextfont = list(color = '#FFFFFF'),
+                   hoverinfo = 'text',
+                   text = ~paste0(Offense,': ',
+                                  Total, ' total offenses'),
+                   marker = list(colors = colors,
+                                 line = list(color = '#FFFFFF', width = 1))
+    )
+    
+    # set up a layout for the pie chart
+    fig <- fig %>%
+      layout(
+        title = paste0(
+          'Breakdown of Violent Crime in Seattle', '(', input$pie_year, ')'
+        ),
+        margin = list(l = 50, r = 50, b = 50, t = 100,  pad = 4),
+        yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
+      )
+    
+    fig
+  })
+  
+#   # Define reactive expression to create pie chart
+#   pie_chart <- reactive({
+# 
+#   # Filter and summarize data
+#     pie_data <- crime_data %>%
+#       filter(Year == input$pie_year) %>%
+#       group_by(Offense) %>%
+#       summarize(Total = n()) %>%
+#       mutate(Percentage = round(Total / sum(Total), 1))
+#   
+#   #Create pie chart
+#     ggplot(pie_data, na.rm = TRUE, aes(x = "", y = Total, fill = Offense)) +
+#       geom_bar(width = 1, stat = "identity") +
+#       coord_polar("y", start = 0) +
+#       geom_text(aes(label = scales::percent(Percentage)),
+#                 position = position_stack(vjust = 0.5),
+#                 color = "black") +
+#       labs(title = paste("Crime Category Percentages")) +
+#       guides(fill = guide_legend(title = "Offense Categories")) +
+#       theme_void()
+# })
+#   output$pie <- renderPlot({
+#     pie_chart()
+# })
+  
+>>>>>>> a3be3d14c9d35757252f172adb89283fe2d67603
   
   ###
   # Chart 3 - Crime Map

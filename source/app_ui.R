@@ -20,7 +20,10 @@ source('data_cleaning.R')
 # introduction page that contains the text and formatting for the introduction
 # page
 intro_main_content <- mainPanel(
-  h1('Introduction'),
+  h1(strong("Crime in Seattle")),
+  h4(em("Authors: Angela Menge, Ellen Huynh, Kensho Gendzwill, Nathan Lee")),  
+  h4("Affiliation: INFO-201: Technical Foundations of Informatics - The Information School - University of Washington"),
+  h2('Introduction'),
   p('Too often, pedestrians fall victim to incidents of robbery, battery and gun
     violence. As students, safety on the streets is a concern even near campus, 
     where rates of violent crimes are increasing. This project will parse through 
@@ -30,7 +33,7 @@ intro_main_content <- mainPanel(
     safely.'),
   h2('Questions'),
   uiOutput("questionList"),
-  h3('Data'),
+  h2('About the Dataset'),
   p('Our questions were answered using the Seattle Police Department’s
     (SPD) crime data collected from 2008-Present. The data collected relies on 
     the National Incident-Based Reporting System (NIBRS), the standardization of
@@ -40,17 +43,16 @@ intro_main_content <- mainPanel(
     and 1.02 million rows. To provide a more specific report, we decided within 
     the data set, to focus only on crimes that would affect pedestrians which 
     include: '),
-  uiOutput("focusedCrimes"),
-  tags$figure(
-    align = "center",
-    tags$img(
-      src = "picture.jpg",
-      width = 600,
-      alt = "https://www.foxnews.com/us/u-washington-students-defend-themselves-from-potential-sex-offender-following-assaults-near-campus"
-    ),
-    tags$figcaption("this is a picture")
-)
-)
+  uiOutput("crime"),
+  h2("Explore our Interactive Visualizations"),
+  h4("1. Visualization of Crime by Hour"),
+  p("How does the time of day impact crime committed?"),
+  h4("2. Common Types of Violent Crime"),
+  p("What are the most common types of violent crime in Seattle?"),
+  h4("3. Map of Violent Crime in Seattle"),
+  p("Where in Seattle do violent crimes occur most?"),
+  img('University of Washington makes news because of crime. (Image courtesy foxnews.com)', src = "picture.jpg")
+ )
 
 # Create a variable `intro_panel` that stores a `tabPanel()` for my first page
 intro_panel <- tabPanel(
@@ -122,6 +124,7 @@ chart2_sidebar_content <- sidebarPanel(
 # Define a variable `chart2_main_content` that is a `mainPanel()` for my
 # chart 2 page that contains
 chart2_main_content <- mainPanel(
+<<<<<<< HEAD
   plotOutput('pie'),
   h1('Summary'),
   h2('About This Graph'),
@@ -136,6 +139,10 @@ chart2_main_content <- mainPanel(
     appear to be the lowest committed crime types. Drunkenness was absent until 2019."),
   p("The year 2007 has only 4 types shown which may be due to lack of data and/or reports. Additionally, a crime type being highly common is not equivalant to its
     level of risk, it simply means that it occurs more. Pedestrians should keep in mind both how common and how dangerous a crime is.")
+=======
+  plotlyOutput('pie')
+  # plotOutput('pie')
+>>>>>>> a3be3d14c9d35757252f172adb89283fe2d67603
 )
 
 # Create a variable `chart2_panel` that stores a `tabPanel()` for my chart 2
@@ -244,14 +251,13 @@ summary_panel <- tabPanel(
 # Define a variable `report_main_content` that is a `mainPanel()` for my
 # report page that contains
 report_main_content <- mainPanel(
-  p('report main panel'),
   htmltools::includeMarkdown("../docs/report.md")
 )
 
 # Create a variable `report_panel` that stores a `tabPanel()` for my report
 # page
 report_panel <- tabPanel(
-  titlePanel('report'),
+  titlePanel('Report'),
   report_main_content
 )
 
